@@ -14,4 +14,17 @@ public class UserService {
     public List<User> findAll(){
        return userRepositoty.findAll();
     }
+    public User findById(Integer id){
+       return userRepositoty.findById(id);
+    }
+    public void add(User user){
+        userRepositoty.save(user);
+    }
+    public void delete(Integer id){
+        userRepositoty.deleteById(id);
+    }
+
+    public User findByStatus(Integer status){
+       return userRepositoty.findByStatus(status);
+    }
 }
