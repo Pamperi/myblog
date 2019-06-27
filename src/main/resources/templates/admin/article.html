@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新增文章</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+  
+    <link rel="stylesheet" href="../../static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../static/plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+	<script src="../../static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../../static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- 富文本编辑器 -->
+	<link rel="stylesheet" href="../../static/plugins/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="../../static/plugins/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="../../static/plugins/kindeditor/lang/zh_CN.js"></script>
+    
+    
+      
+    
+    
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" >
+<div >
+	<button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">保存</button>
+	<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+</div>
+<div class="tab-pane active" id="home">
+
+
+	<div class="col-md-10 data">
+		<input type="text" class="form-control"   placeholder="标题" value="">
+	</div>
+
+
+	<div class="col-md-10 data editer">
+		<textarea name="content" style="width:1094px;height:800px;visibility:hidden;" ></textarea>
+	</div>
+</div>
+
+
+            <!-- 正文区域 /-->
+<script type="text/javascript">
+
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="content"]', {
+			allowFileManager : true
+		});
+	});
+
+</script>
+       
+</body>
+
+</html>

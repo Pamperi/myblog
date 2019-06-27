@@ -1,4 +1,4 @@
-app.controller('indexController',function($scope,indexService,$window){
+app.controller('indexController',function($scope,indexService,$window,uploadService){
     $scope.findBy=function(){
         indexService.findByStatus(1).success(function (response) {
             $scope.user=response;
@@ -31,6 +31,31 @@ $scope.reloadRoute=function () {
     $window.location.reload();
 }
 
+//上传图片
+    $scope.uploadFile=function(){
+        uploadService.uploadFile().success(
+            function(response){
+                if(response.success){
+                    alert(response.message);
+                    $scope.entity.image= response.message;
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
+    $scope.uploadFile1=function(){
+        uploadService.uploadFile1().success(
+            function(response){
+                if(response.success){
+                    alert(response.message);
+                    $scope.entity.background= response.message;
+                }else{
+                    alert(response.message);
+                }
+            }
+        );
+    }
 $scope.update=function () {
 
         if($scope.newPassWord!=$scope.newPassWord1){
