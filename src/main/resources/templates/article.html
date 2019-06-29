@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="../static/js/angular.min.js"></script>
-<script src="../static/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="../static/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../static/js/base_pagination.js"></script>
-<script type="text/javascript" src="../static/js/service/indexService.js"></script>
-<script type="text/javascript" src="../static/js/service/uploadService.js"></script>
-<script type="text/javascript" src="../static/js/service/articleService.js"></script>
-<script type="text/javascript" src="../static/js/controller/indexController.js"></script>
-<script src="../static/plugins/angularjs/pagination.js"></script>
-<link rel="stylesheet" href="../static/plugins/angularjs/pagination.css">
-<head >
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>博客</title>
+    <title>文章</title>
+    <script type="text/javascript" src="../static/js/angular.min.js"></script>
+    <script src="../static/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/base_pagination.js"></script>
+    <script type="text/javascript" src="../static/js/service/indexService.js"></script>
+    <script type="text/javascript" src="../static/js/service/uploadService.js"></script>
+    <script type="text/javascript" src="../static/js/service/articleService.js"></script>
+    <script type="text/javascript" src="../static/js/controller/indexController.js"></script>
+    <script src="../static/plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../static/plugins/angularjs/pagination.css">
 
     <link rel="icon" type="image/png" href="../static/assets/images/favicon.png"/>
     <link href="../static/assets/images/favicon.png" rel="shortcut icon" type="image/png">
@@ -23,17 +24,39 @@
     <link rel="stylesheet" href="../static/css/main.css">
     <link href="../static/css/font-awesome.min.css" rel="stylesheet">
 
+
+    <script type="text/javascript">
+       $(function () {
+           login2()
+       })
+       function login2() {
+           var url = location.search; //获取url中"?"符后的字串
+           if (url.indexOf("?") != -1) { //判断是否有参数
+               var str = url.substr(1); //从第一个字符开始 因为第0个是?号 获取所有除问号的所有符串
+               strs = str.split("="); //用等号进行分隔 （因为知道只有一个参数 所以直接用等号进分隔 如果有多个参数 要用&号分隔 再用等号进行分隔）
+
+           }
+           $.get(
+               "/article/findByOne.do",
+               {id: strs[1]},
+               function(data) {
+                   document.getElementById("div1").innerHTML = data.article;
+                   document.getElementById("title").innerHTML=data.title;
+                   document.getElementById("time").innerHTML=data.time;
+               },
+               "json"
+           );
+       }
+    </script>
 </head>
-
-
-<body ng-app="myblog" ng-controller="indexController" ng-init='findBy();reloadList()'>
-
-<span class="mobile btn-mobile-menu">
+<body ng-app="myblog" ng-controller="indexController" ng-init='findBy()'>
+<input type="hidden" id="tex" ng-model="id">
+<span class="mobile btn-mobile-menu" ng-app="myblog" ng-controller="indexController">
         <i class="fa fa-list btn-mobile-menu__icon"></i>
         <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
     </span>
 
-<header class="panel-cover " style="background-image: url('//{{user.background}}')">
+<header class="panel-cover panel-cover--collapsed" style="background-image: url('//{{user.background}}')">
     <div class="panel-main">
 
         <div class="panel-main__inner panel-inverted">
@@ -142,7 +165,6 @@
             </div>
         </div>
 
-
         <div class="panel-cover--overlay cover-red"></div>
 
     </div>
@@ -151,50 +173,25 @@
 
 <div class="content-wrapper">
     <div class="content-wrapper__inner">
-        <div class="main-post-list hidden">
-
-            <ol class="post-list">
-                <li ng-repeat="article in list">
-                    <h2 class="post-list__post-title post-title"><a href="../templates/article.html?id={{article.id}}"
-                                                                    title="{{article.title}}" >{{article.title}}</a></h2>
-                    <p class="excerpt">{{article.subTitle}}.&hellip;</p>
-                    <div class="post-list__meta">
-                        <time datetime="2019-02-21 10:28:00 +0900" class="post-list__meta--date date">{{article.time}}</time>
-                        &#8226; <span class="post-list__meta--tags tags">能工巧匠集</span><a class="btn-border-small"
-                                                                                        href="../templates/article.html?id={{article.id}}" >继续阅读</a>
-                    </div>
-
-                </li>
-
-            </ol>
-
-        </div>
+            <header class="post-header">
+                <div class="post-meta">
+                    <time datetime="2019-06-11 12:32:00 +0900" itemprop="datePublished" class="post-meta__date date" id="time"></time> &#8226; <span class="post-meta__tags tags">能工巧匠集</span>
+                </div>
+                <h1 class="post-title" id="title"></h1>
+            </header>
+        <div style="white-space: pre" id="div1">
+            <section class="post">
 
 
-            <hr class="post-list__divider "/>
-            <tm-pagination conf="paginationConf"></tm-pagination>
+
+
+
+            </section>
         </div>
 
     </div>
+</div>
 
-
-
-
-
-<script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
-
-
-<script type="text/javascript" src="../static/js/main.js"></script>
-
-
-<script>
-    /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-25719337-1', 'onevcat.com');
-    ga('send', 'pageview');*/
-</script>
 
 
 </body>

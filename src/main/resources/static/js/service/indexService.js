@@ -1,6 +1,6 @@
 app.service('indexService',function($http){
     this.findByStatus=function(status){
-        return $http.get('../user/findByStatus.do?status='+status);
+        return $http.get('../../user/findByStatus.do?status='+status);
     }
 
     this.findAll=function(){
@@ -18,4 +18,5 @@ app.service('indexService',function($http){
     this.update=function (oldPassWord,newPassWord) {
         return $http.get('../../password/save.do?oldPassWord='+oldPassWord+'&newPassWord='+newPassWord);
     }
+
 });

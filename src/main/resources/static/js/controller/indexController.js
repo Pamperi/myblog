@@ -1,4 +1,36 @@
-app.controller('indexController',function($scope,indexService,$window,uploadService){
+app.controller('indexController',function($scope,indexService,$window,uploadService,articleService){
+
+    $scope.findByOne=function(id){
+        articleService.findByOne(id).success(function (response) {
+            $scope.entity=response;
+
+        })
+    }
+
+    //分页控件配置
+    $scope.paginationConf = {
+        currentPage: 1,
+        totalItems: 10,
+        itemsPerPage: 10,
+        perPageOptions: [10, 20, 30, 40, 50],
+        onChange: function () {
+            $scope.reloadList();//重新加载
+        }
+    }
+
+    //重新加载列表 数据
+    $scope.reloadList=function(){
+        //切换页码
+        $scope.findByAll();
+    }
+    $scope.findByAll=function(){
+        articleService.findBy($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage).success(function (response) {
+            $scope.list=response.list;
+            $scope.paginationConf.totalItems=response.totalElements;//更新总记录数
+        })
+    }
+
+
     $scope.findBy=function(){
         indexService.findByStatus(1).success(function (response) {
             $scope.user=response;

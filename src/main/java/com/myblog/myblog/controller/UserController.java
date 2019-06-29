@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.Null;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -46,4 +48,5 @@ public class UserController {
     public User findByStatus(Integer status){
         return userService.findByStatus(status);
     }
+
 }
