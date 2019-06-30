@@ -9,4 +9,5 @@ import sun.security.util.Password;
 @Repository
 public interface PassWordRepository extends JpaRepository<PassWord,Object>, JpaSpecificationExecutor<PassWord> {
     PassWord findByPassword(String passWord);
+    PassWord findByName(String name);
 }

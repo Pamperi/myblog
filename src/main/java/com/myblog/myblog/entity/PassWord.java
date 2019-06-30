@@ -8,6 +8,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "password")
 public class PassWord {
+    public PassWord(PassWord passWord) {
+        this.id=passWord.getId();
+        this.name = passWord.getName();
+        this.password = passWord.getPassword();
+    }
+
+    public PassWord() {
+    }
+
     @GeneratedValue
     @Id
     private Integer id;

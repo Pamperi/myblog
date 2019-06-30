@@ -38,10 +38,12 @@
  <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-              
-                <ul class="sidebar-menu"  >
+				<form action="/logout" method="post" >
+				<input type="submit" class="btn btn-primary" value="注销"/>
+				</form>
+				<ul class="sidebar-menu"  >
                     <li class="header">菜单</li>
-                    <li id="admin-index"><a href="index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                    <li id="admin-index"><a href="/templates/admin/index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
 
 				    <!-- 菜单 -->
 				    <li class="treeview">
@@ -55,12 +57,12 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login">
-				                <a href="user.html" target="iframe">
+				                <a href="/templates/admin/user.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i> 修改资料
 				                </a>
 				            </li>
 							<li id="admin-password">
-				                <a href="password.html" target="iframe">
+				                <a href="/templates/admin/password.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i> 修改密码
 				                </a>
 				            </li>
@@ -77,12 +79,12 @@
 				        <ul class="treeview-menu">
 				
 				            <li id="admin-login1">
-				                <a href="article.html" target="iframe">
+				                <a href="/templates/admin/article.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i> 新增文章
 				                </a>
 				            </li>
 							<li id="admin-login2">
-				                <a href="articleAdmin.html" target="iframe">
+				                <a href="/templates/admin/articleAdmin.html" target="iframe">
 				                    <i class="fa fa-circle-o"></i> 文章管理
 				                </a>
 				            </li>
@@ -103,7 +105,7 @@
         <!-- 内容区域 -->
         <div class="content-wrapper">
 			<iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()" 
-					frameborder="0" src="image.html" ></iframe>
+					frameborder="0" src="/templates/admin/image.html" ></iframe>
  
         </div>
         <!-- 内容区域 /-->
